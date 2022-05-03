@@ -91,9 +91,13 @@ namespace WindowsKeyFinder
             byte[] id = null;
             var regKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion");
 
-            if (regKey != null) id = regKey.GetValue("DigitalProductId") as byte[];
-
-            m_productKey = DecodeKey(id);
+            if (regKey != null)
+            {
+                id = regKey.GetValue("DigitalProductId") as byte[];
+                m_productKey = DecodeKey(id);
+            }
+            else
+                return;
         }
 
     }
